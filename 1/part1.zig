@@ -1,14 +1,9 @@
 const std = @import("std");
 
-pub fn main() void {
-    const text =
-        \\1abc2
-        \\pqr3stu8vwx
-        \\a1b2c3d4e5f
-        \\treb7uchet 
-    ;
+const data = @embedFile("part1.txt");
 
-    const sum = part1(text);
+pub fn main() void {
+    const sum = part1(data);
     std.debug.print("sum: {}\n", .{sum});
 }
 
@@ -35,7 +30,7 @@ fn part1(text: []const u8) u32 {
         }
 
         i = line.len - 1;
-        while (i > 0) : (i -= 1) {
+        while (i >= 0) : (i -= 1) {
             if (std.ascii.isDigit(line[i])) {
                 last = line[i] - '0';
                 break;
